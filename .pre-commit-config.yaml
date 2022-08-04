@@ -1,0 +1,77 @@
+# .pre-commit-config.yaml
+repos:
+    - repo: https://github.com/pre-commit/pre-commit-hooks
+      rev: v3.2.0
+      hooks:
+          - id: check-added-large-files
+          - id: trailing-whitespace
+          - id: end-of-file-fixer
+          - id: check-merge-conflict
+          - id: check-case-conflict
+          - id: check-json
+          - id: check-toml
+          - id: check-yaml
+          - id: pretty-format-json
+            args: [--autofix, --no-ensure-ascii, --no-sort-keys]
+          - id: check-ast
+          - id: debug-statements
+          - id: check-docstring-first
+    - repo: local
+      hooks:
+          - id: autoflake
+            name: Remove unused variables and imports
+            entry: poetry run autoflake
+            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            args:
+                [
+                    "--in-place",
+                    "--remove-all-unused-imports",
+                    "--remove-unused-variables",
+                    "--expand-star-imports",
+                    "--ignore-init-module-imports",
+                ]
+            language: system
+            types: [python]
+            verbose: true
+          - id: isort
+            name: Sorting import statements
+            entry: poetry run isort
+            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            language: system
+            types: [python]
+            args: ["--filter-files"]
+          - id: black
+            name: Fix formatting for the entire codebase
+            entry: poetry run black
+            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            language: system
+            types: [python]
+            verbose: true
+          - id: flake8
+            name: Lint code base
+            entry: poetry run flake8
+            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            language: system
+            types: [python]
+            verbose: true
+          - id: mypy
+            name: local mypy
+            description: static type checker
+            entry: poetry run mypy
+            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            language: system
+            types: [python]
+          - id: coverage
+            name: local pytest coverage
+            description: runs pytest along with coverage
+            entry: poetry run pytest --cov {PROJECT_NAME} tests
+            files: ^({PROJECT_NAME}/tests/)
+            language: system
+            types: [python]
+          - id: safety
+            name: local safety
+            description: check for vulnerabilities in packages.
+            entry: poetry run safety check
+            language: system
+            types: [python]
+            pass_filenames: false
