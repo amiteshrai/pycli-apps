@@ -41,3 +41,5 @@ omit = [".venv/*"]
 
 [tool.poetry.scripts]
 greet = "src.apps.greetings.main:hello"
+add = "src.apps.calculator.main:add"
+subtract = "src.apps.calculator.main:subtract"
