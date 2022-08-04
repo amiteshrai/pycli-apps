@@ -3,6 +3,10 @@ name = "apps"
 version = "0.1.0"
 description = "Command line apps built using Python's Click and Typer"
 authors = ["Amitesh Kumar <amiteshrai@outlook.com>"]
+readme = "README.md"
+homepage = "https://github.com/amiteshrai/pycli-apps"
+repository = "https://github.com/amiteshrai/pycli-apps"
+keywords = ["python", "cli", "click", "typer"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
