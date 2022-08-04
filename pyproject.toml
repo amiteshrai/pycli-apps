@@ -34,3 +34,6 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.coverage.run]
 omit = [".venv/*"]
+
+[tool.poetry.scripts]
+greet = "src.apps.greetings.main:hello"
