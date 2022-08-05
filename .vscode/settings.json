@@ -17,6 +17,10 @@
     "source.organizeImports": true,
     "source.fixAll": true
   },
+  "vsintellicode.features.python.deepLearning": "enabled",
+  "python.analysis.indexing": true,
+  "python.languageServer": "Pylance",
+  "python.analysis.completeFunctionParens": true,
   "python.linting.enabled": true,
   "python.linting.lintOnSave": true,
   "python.linting.flake8Enabled": true,
