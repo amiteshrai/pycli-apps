@@ -21,7 +21,7 @@ repos:
           - id: autoflake
             name: Remove unused variables and imports
             entry: poetry run autoflake
-            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            files: ^({PROJECT_NAME}/src/|tests/)
             args:
                 [
                     "--in-place",
@@ -36,21 +36,21 @@ repos:
           - id: isort
             name: Sorting import statements
             entry: poetry run isort
-            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            files: ^({PROJECT_NAME}/src/|tests/)
             language: system
             types: [python]
             args: ["--filter-files"]
           - id: black
             name: Fix formatting for the entire codebase
             entry: poetry run black
-            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            files: ^({PROJECT_NAME}/src/|tests/)
             language: system
             types: [python]
             verbose: true
           - id: flake8
             name: Lint code base
             entry: poetry run flake8
-            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            files: ^({PROJECT_NAME}/src/|tests/)
             language: system
             types: [python]
             verbose: true
@@ -58,13 +58,20 @@ repos:
             name: local mypy
             description: static type checker
             entry: poetry run mypy
-            files: ^({PROJECT_NAME}/cli_apps/|tests/)
+            files: ^({PROJECT_NAME}/src/|tests/)
             language: system
             types: [python]
+          - id: pytest
+            name: run tests
+            entry: poetry run pytest
+            types: [python]
+            language: system
+            pass_filenames: false
+            always_run: true
           - id: coverage
             name: local pytest coverage
             description: runs pytest along with coverage
-            entry: poetry run pytest --cov {PROJECT_NAME} tests
+            entry: poetry run pytest --cov tests/
             files: ^({PROJECT_NAME}/tests/)
             language: system
             types: [python]
