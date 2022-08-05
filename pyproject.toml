@@ -3,6 +3,10 @@ name = "apps"
 version = "0.1.0"
 description = "Command line apps built using Python's Click and Typer"
 authors = ["Amitesh Kumar <amiteshrai@outlook.com>"]
+readme = "README.md"
+homepage = "https://github.com/amiteshrai/pycli-apps"
+repository = "https://github.com/amiteshrai/pycli-apps"
+keywords = ["python", "cli", "click", "typer"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -14,7 +18,6 @@ requests = "^2.28.1"
 requests-cache = "^0.9.5"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
 autopep8 = "^1.6.0"
 flake8 = "^5.0.2"
 black = "^22.6.0"
@@ -27,6 +30,7 @@ flake8-pytest-style = "^1.6.0"
 nitpick = "^0.32.0"
 isort = "^5.10.1"
 autoflake = "^1.4"
+pytest = "^7.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -34,3 +38,14 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.coverage.run]
 omit = [".venv/*"]
+
+[tool.poetry.scripts]
+greet = "src.apps.greetings.main:hello"
+add = "src.apps.calculator.main:add"
+subtract = "src.apps.calculator.main:subtract"
+auth = "src.apps.authenticator.main:auth_options"
+auth_again = "src.apps.authenticator.main:auth_prompt"
+take_notes = "src.apps.notes.main:take_notes"
+concat_notes = "src.apps.notes.main:concat_notes"
+notes = "src.apps.notes.main:main"
+download = "src.apps.download.main:download"
